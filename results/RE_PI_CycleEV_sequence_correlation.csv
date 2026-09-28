@@ -1,0 +1,5 @@
+Feature,Mean_Pearson_r,Median_Pearson_r,STD_Pearson_r
+SoC [%],,,
+Battery Voltage [V],0.8025428,0.9171282,0.29847375
+Motor Torque [Nm],0.9585957,0.98385453,0.10582661
+Longitudinal Acceleration [m/s^2],0.9196798,0.9732991,0.20092736

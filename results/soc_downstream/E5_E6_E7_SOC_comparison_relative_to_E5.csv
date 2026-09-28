@@ -1,0 +1,3 @@
+Comparison,MAE_difference_percent,RMSE_difference_percent
+E6 vs E5,0.46641827,0.48881721
+E7 vs E5,0.43488216,0.60558224

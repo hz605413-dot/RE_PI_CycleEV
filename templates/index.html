@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>RE-PI-CycleEV</title>
+
+    <!-- Favicon -->
+    <link
+        rel="icon"
+        type="image/png"
+        href="{{ url_for('static', filename='images/re-pi-cycleev-logo.png') }}"
+    >
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <!-- Chart.js -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js"
+        defer
+    ></script>
+
+    <!-- Our JavaScript -->
+    <script
+        src="{{ url_for('static', filename='js/script.js') }}"
+        defer
+    ></script>
+
+</head>
+
+<body>
+
+    <!-- =====================================================
+         Header
+    ====================================================== -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                EV Time-Series Synthesis
+            </div>
+
+            <h1>
+                RE-PI-CycleEV
+            </h1>
+
+            <p class="subtitle">
+                Rare-Event-Aware Physics-Informed
+                Conditional GAN for Multivariate
+                Electric-Vehicle Time-Series Synthesis
+            </p>
+
+            <p class="description">
+                Generate synthetic EV time-series data using
+                a trained conditional generative model with
+                rare-event control and physics-informed learning.
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         Main
+    ====================================================== -->
+
+    <main class="container">
+
+
+        <!-- =================================================
+             Control Card
+        ================================================== -->
+
+        <section class="card">
+
+            <h2>
+                Generate Synthetic EV Data
+            </h2>
+
+            <p class="section-description">
+                Upload an EV CSV containing the required
+                input variables. The application uses the
+                first 256 rows as one model input sequence.
+            </p>
+
+
+            <form id="generationForm">
+
+
+                <!-- File -->
+
+                <div class="form-group">
+
+                    <label for="csvFile">
+                        EV Input CSV
+                    </label>
+
+                    <input
+                        type="file"
+                        id="csvFile"
+                        name="file"
+                        accept=".csv"
+                        required
+                    >
+
+                    <small>
+                        Minimum 256 rows required.
+                    </small>
+
+                </div>
+
+
+                <!-- Event -->
+
+                <div class="form-group">
+
+                    <label for="event">
+                        Event Condition
+                    </label>
+
+                    <select
+                        id="event"
+                        name="event"
+                    >
+
+                        {% for key, name in events.items() %}
+
+                        <option value="{{ key }}">
+                            {{ name }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <!-- Button -->
+
+                <button
+                    type="submit"
+                    id="generateButton"
+                >
+                    Generate Synthetic Data
+                </button>
+
+            </form>
+
+
+            <!-- Status -->
+
+            <div
+                id="status"
+                class="status hidden"
+            ></div>
+
+        </section>
+
+
+        <!-- =================================================
+             Results
+        ================================================== -->
+
+        <section
+            id="resultsSection"
+            class="hidden"
+        >
+
+
+            <!-- Result Header -->
+
+            <div class="result-header">
+
+                <div>
+
+                    <span class="badge">
+                        Generated Result
+                    </span>
+
+                    <h2>
+                        Synthetic EV Time-Series
+                    </h2>
+
+                </div>
+
+
+                <button
+                    id="downloadButton"
+                    class="secondary-button"
+                    type="button"
+                >
+                    Download CSV
+                </button>
+
+            </div>
+
+
+            <!-- Event Summary -->
+
+            <div class="summary-grid">
+
+
+                <div class="summary-card">
+
+                    <span>
+                        Selected Event
+                    </span>
+
+                    <strong id="selectedEvent">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span>
+                        Generated Time Steps
+                    </span>
+
+                    <strong id="rowsGenerated">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 Charts
+            ================================================== -->
+
+            <div class="charts-grid">
+
+
+                <!-- SOC -->
+
+                <div class="chart-card">
+
+                    <h3>
+                        State of Charge
+                    </h3>
+
+                    <canvas
+                        id="socChart"
+                    ></canvas>
+
+                </div>
+
+
+                <!-- Voltage -->
+
+                <div class="chart-card">
+
+                    <h3>
+                        Battery Voltage
+                    </h3>
+
+                    <canvas
+                        id="voltageChart"
+                    ></canvas>
+
+                </div>
+
+
+                <!-- Torque -->
+
+                <div class="chart-card">
+
+                    <h3>
+                        Motor Torque
+                    </h3>
+
+                    <canvas
+                        id="torqueChart"
+                    ></canvas>
+
+                </div>
+
+
+                <!-- Acceleration -->
+
+                <div class="chart-card">
+
+                    <h3>
+                        Longitudinal Acceleration
+                    </h3>
+
+                    <canvas
+                        id="accelerationChart"
+                    ></canvas>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 Statistics
+            ================================================== -->
+
+            <div class="card">
+
+                <h2>
+                    Generated Signal Statistics
+                </h2>
+
+                <div
+                    id="statistics"
+                    class="statistics-grid"
+                ></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         Footer
+    ====================================================== -->
+
+    <footer>
+
+        <p>
+            RE-PI-CycleEV · EV Synthetic Time-Series Generator
+        </p>
+
+        <p>
+            Research demonstration interface
+        </p>
+
+        <p
+            class="author-credit"
+            style="font-family: 'Times New Roman', Times, serif;"
+        >
+            Made by <strong>Hassan Zaman</strong>
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

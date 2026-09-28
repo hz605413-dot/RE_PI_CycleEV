@@ -1,0 +1,4 @@
+Requested_Condition,Low_SOC_Event_Rate,Aggressive_Event_Rate
+Normal,0.0,0.005
+Requested_Low_SOC,0.085,0.0
+Requested_Aggressive,0.0,0.005

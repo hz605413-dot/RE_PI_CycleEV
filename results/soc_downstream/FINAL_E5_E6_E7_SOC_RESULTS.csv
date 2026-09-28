@@ -1,0 +1,4 @@
+Experiment,MAE_SOC_percent,RMSE_SOC_percent,Mean_Error_percent,Std_Error_percent,Max_Absolute_Error_percent
+E5_Real_Only,11.904641,14.169821,2.3162155,13.979234,35.256237
+E6_Real_Plus_PI,12.371059,14.658638,1.6946912,14.560346,40.156532
+E7_Real_Plus_REPI,12.339523,14.775403,2.7086864,14.524997,38.17031

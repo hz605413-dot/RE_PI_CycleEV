@@ -1,0 +1,6 @@
+Event,Original_Frequency,Sampled_Frequency
+Low_SOC,0.10003473428273706,0.0702
+High_Current,0.05001736714136853,0.0725
+Aggressive_Accel_Braking,0.05001736714136853,0.072
+Heating_Stress,0.05001736714136853,0.0635
+Stop_and_Go,0.1055922195206669,0.0742

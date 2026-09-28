@@ -1,0 +1,6 @@
+Event,Precision,Recall,F1,True_Count,Predicted_Count
+Low_SOC,1.0,1.0,1.0,72,72
+High_Current,1.0,1.0,1.0,19,19
+Aggressive_Accel_Braking,1.0,1.0,1.0,12,12
+Heating_Stress,1.0,1.0,1.0,81,81
+Stop_and_Go,1.0,1.0,1.0,72,72

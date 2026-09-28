@@ -1,0 +1,6 @@
+Feature,MAE,RMSE
+SoC,9.479008,12.396522
+Battery Voltage,5.140765,6.6749525
+Motor Torque,6.618816,10.51393
+Longitudinal Acceleration,0.14626482,0.22548959
+Overall,5.3462133,7.452723

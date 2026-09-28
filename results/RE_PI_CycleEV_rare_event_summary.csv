@@ -1,0 +1,9 @@
+Metric,Value
+SOC threshold,45.38
+Acceleration threshold,2.7512
+Low SOC real frequency,0.13846153846153847
+Low SOC generated frequency,0.14038461538461539
+Low SOC hit rate,1.0
+Aggressive real frequency,0.023076923076923078
+Aggressive generated frequency,0.007692307692307693
+Aggressive hit rate,0.25
